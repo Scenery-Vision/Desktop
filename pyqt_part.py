@@ -171,6 +171,12 @@ class MainWindow(QMainWindow):
             self.load_page(download_image(Thread.final_data["Путь к фото"][page_index],
                                           Thread.final_data["Наименование"][page_index]), Thread.final_data, page_index,
                            char_index, desc_index)
+        else:
+            page_index = len(Thread.final_data.index) - 1
+            self.load_page(download_image(Thread.final_data["Путь к фото"][page_index],
+                                          Thread.final_data["Наименование"][page_index]), Thread.final_data, page_index,
+                           char_index, desc_index)
+
 
 
 
@@ -184,6 +190,13 @@ class MainWindow(QMainWindow):
             self.load_page(download_image(Thread.final_data["Путь к фото"][page_index],
                                           Thread.final_data["Наименование"][page_index]), Thread.final_data, page_index,
                            char_index, desc_index)
+        else:
+            page_index = 0
+            self.load_page(download_image(Thread.final_data["Путь к фото"][page_index],
+                                          Thread.final_data["Наименование"][page_index]), Thread.final_data, page_index,
+                           char_index, desc_index)
+
+
 
     def load_chars(self, chars_data: pd.Series) -> None:
         generated_text = "\n".join(
@@ -207,8 +220,10 @@ class MainWindow(QMainWindow):
         print('im in')
         pixmap = QtGui.QPixmap(image_path)
         self.ui.image_label.setPixmap(pixmap)
+
+        #self.ui.title_label.setWordWrap(True)
         self.ui.title_label.setText(generated_data["Наименование для сайта"][page_idx])
-        self.ui.title_label.setWordWrap(True)
+        self.ui.title_label.setTextFormat(1)
         print(1)
         #characteristics = generated_data.drop(description_col, axis=1).dropna(axis=1).columns.tolist()
         characteristics = generated_data.columns.tolist()
