@@ -1,0 +1,37 @@
+<RCC>
+  <qresource prefix="fonts">
+    <file>fonts/AbhayaLibre-Bold.ttf</file>
+    <file>fonts/AbhayaLibre-ExtraBold.ttf</file>
+    <file>fonts/AbhayaLibre-Medium.ttf</file>
+    <file>fonts/AbhayaLibre-Regular.ttf</file>
+    <file>fonts/AbhayaLibre-SemiBold.ttf</file>
+    <file>fonts/Mulish-Bold.ttf</file>
+    <file>fonts/Mulish-Medium.ttf</file>
+    <file>fonts/Mulish-Regular.ttf</file>
+  </qresource>
+  <qresource prefix="newPrefix">
+    <file>images/add.svg</file>
+    <file>images/add_exel.svg</file>
+    <file>images/add_exel_hover.svg</file>
+    <file>images/add_exel_pressed.svg</file>
+    <file>images/arrow_to_left.svg</file>
+    <file>images/arrow_to_left_hover.svg</file>
+    <file>images/arrow_to_left_pressed.svg</file>
+    <file>images/arrow_to_right.svg</file>
+    <file>images/arrow_to_right_hover.svg</file>
+    <file>images/arrow_to_right_pressed.svg</file>
+    <file>images/arrow_to_rightsvg.svg</file>
+    <file>images/circle_button.svg</file>
+    <file>images/close.svg</file>
+    <file>images/download.svg</file>
+    <file>images/example_image.png</file>
+    <file>images/exit.svg</file>
+    <file>images/header.png</file>
+    <file>images/main_backround.png</file>
+    <file>images/minimize.svg</file>
+    <file>images/pushed_circle_button.svg</file>
+    <file>images/restore_maximize_1.svg</file>
+    <file>images/restore_maximize_2.svg</file>
+    <file>images/scenery_icon.png</file>
+  </qresource>
+</RCC>
