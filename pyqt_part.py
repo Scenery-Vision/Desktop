@@ -144,30 +144,20 @@ class MainWindow(QMainWindow):
     @QtCore.pyqtSlot()
     def end_of_first_loading(self):
         self.ui.stackedWidget.setCurrentIndex(1)
-        print('111')
-        print(Thread.final_data["Артикул"])
-        print('111')
-        print(download_image(Thread.final_data["Путь к фото"][page_index], Thread.final_data["Артикул"][page_index]))
-        print('111')
-        print(page_index)
-        print(char_index)
         self.load_page(download_image(Thread.final_data["Путь к фото"][page_index],
                                       Thread.final_data["Артикул"][page_index]), Thread.final_data, page_index,
                        char_index, 0)
 
-
     def save_files(self):
-        file_name = QFileDialog.getSaveFileName(self, 'save file', 'C:', 'XLSX files (*xlsx)')[0] + '.xlsx'
-        print(file_name)
-        print(Thread.final_data)
-        excel_save(Thread.final_data, file_name)
+        user_filename = QFileDialog.getSaveFileName(self, 'save file', 'C:', 'XLSX files (*xlsx)')[0]
+        if user_filename != "":
+            file_name = user_filename + '.xlsx'
+            excel_save(Thread.final_data, file_name)
 
     def change_page_left(self):  # left
         global page_index
-        print(page_index)
         if page_index > 0:
             page_index = page_index - 1
-            print(page_index)
             self.load_page(download_image(Thread.final_data["Путь к фото"][page_index],
                                           Thread.final_data["Артикул"][page_index]), Thread.final_data, page_index,
                            char_index, desc_index)
@@ -177,16 +167,11 @@ class MainWindow(QMainWindow):
                                           Thread.final_data["Артикул"][page_index]), Thread.final_data, page_index,
                            char_index, desc_index)
 
-
-
-
     def change_page_right(self):  # Right
         global page_index
 
-        print(page_index)
         if page_index < len(Thread.final_data.index) - 1:
             page_index = page_index + 1
-            print(page_index)
             self.load_page(download_image(Thread.final_data["Путь к фото"][page_index],
                                           Thread.final_data["Артикул"][page_index]), Thread.final_data, page_index,
                            char_index, desc_index)
@@ -195,8 +180,6 @@ class MainWindow(QMainWindow):
             self.load_page(download_image(Thread.final_data["Путь к фото"][page_index],
                                           Thread.final_data["Артикул"][page_index]), Thread.final_data, page_index,
                            char_index, desc_index)
-
-
 
     def load_chars(self, chars_data: pd.Series) -> None:
         generated_text = "\n".join(
@@ -217,24 +200,31 @@ class MainWindow(QMainWindow):
             description_col: str = "Описание",
             chars_on_page: int = 4
     ) -> None:
-        print('im in')
         pixmap = QtGui.QPixmap(image_path)
         self.ui.image_label.setPixmap(pixmap)
 
-        #self.ui.title_label.setWordWrap(True)
-        self.ui.title_label.setText(generated_data["Название"][page_idx])
-        self.ui.title_label.setTextFormat(1)
-        print(1)
-        #characteristics = generated_data.drop(description_col, axis=1).dropna(axis=1).columns.tolist()
-        characteristics = generated_data.columns.tolist()
+        # self.ui.title_label.setWordWrap(True)
+        # custom WordWarp:
+        if len(generated_data["Название"][page_idx]) > 45:
+            label = generated_data["Название"][page_idx]
+            i = 45
+            while label[i] != ' ':
+                i = i - 1
+            warped_label = label[:i] + "<br>" + label[i:]
+            self.ui.title_label.setText(warped_label)
+        else:
+            self.ui.title_label.setText(generated_data["Название"][page_idx])
 
-        print(2)
+        self.ui.title_label.setTextFormat(1)
+        self.ui.title_label.setAlignment(QtCore.Qt.AlignCenter)
+
+
+
+        characteristics = generated_data.dropna(axis=1).columns.tolist()
         cur_characteristics = characteristics[chars_idx * chars_on_page:chars_idx * chars_on_page + chars_on_page]
-        print(3)
         characteristics_data = generated_data[cur_characteristics].iloc[page_idx].copy()
 
         self.load_chars(characteristics_data)
-        print(4)
         self.load_description(
             description_data=generated_data[f"{description_col}{description_idx + 1}"].iloc[page_idx])  # type: ignore
 
@@ -267,3 +257,4 @@ if __name__ == "__main__":
 ##############################################################################################################
 # # END
 ##############################################################################################################
+
