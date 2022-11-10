@@ -132,6 +132,12 @@ class MainWindow(QMainWindow):
 
     # Browse files function
     def browse_files(self):
+        global page_index
+        global char_index
+        global desc_index
+        page_index = 0
+        char_index = 0
+        desc_index = 0
         self.ui.stackedWidget.setCurrentWidget(self.ui.exel_page)
         file_name = QFileDialog.getOpenFileName(self, 'open file', 'C:', 'XLSX files (*xlsx);;CSV files (*csv)')[0]
         self.ui.stackedWidget.setCurrentWidget(self.ui.loading_page)

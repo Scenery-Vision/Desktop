@@ -61,15 +61,7 @@ class APIThread(QThread):
                 slice = self.table.iloc[self.count: self.count + self.batch]
                 slice_copy = slice.drop(columns=["Комплект номенклатуры"])
                 json_slice = transform_to_json(slice_copy)
-
                 response = self.get_response(json_slice)
-                print(len(response[0]["Описание"]))
-                print(len(response[1]["Описание"]))
-                print(len(response[2]["Описание"]))
-                slice["Описание1"] = [unit["Описание"][0] for unit in response]
-                slice["Описание2"] = [unit["Описание"][1] for unit in response]
-                slice["Описание3"] = [unit["Описание"][2] for unit in response]
-                print(slice)
                 update_data(slice)
                 global load_flag
 
@@ -83,7 +75,7 @@ class APIThread(QThread):
             except Exception as ex:
                 print(ex)
                 time.sleep(1)
-                #load_flag = False
+
 
     def get_response(self, json_request):
         response = requests.post(self.url_to_api, json=json_request)
