@@ -4,7 +4,7 @@ import pandas as pd
 import requests
 from PyQt5.QtCore import QThread, pyqtSignal, pyqtSlot
 
-from exel_part import load_and_processing_excel, transform_to_json
+from exel_part import load_and_processing_excel_csv, transform_to_json
 
 glob_size = 0
 load_flag = False
@@ -53,14 +53,13 @@ class APIThread(QThread):
             try:
                 if self.flag:
                     self.flag = False
-                    self.table = load_and_processing_excel(self.path_to_table)  # type: pd.DataFrame
+                    self.table = load_and_processing_excel_csv(self.path_to_table)  # type: pd.DataFrame
                     self.size = self.table.shape[0]
                     self.count = 0
                 if self.count >= self.size:
                     return
                 slice = self.table.iloc[self.count: self.count + self.batch]
-                slice_copy = slice.drop(columns=["Комплект номенклатуры", "Ссылка"])
-                slice_copy = slice_copy.rename(columns={"Наименование": "Артикул", "Наименование для сайта": "Название"})
+                slice_copy = slice.drop(columns=["Комплект номенклатуры"])
                 json_slice = transform_to_json(slice_copy)
 
                 response = self.get_response(json_slice)

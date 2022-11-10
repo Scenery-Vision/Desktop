@@ -3,6 +3,7 @@ import pandas as pd
 import re
 import requests
 import time
+import os
 from xlsx2csv import Xlsx2csv
 from io import StringIO
 
@@ -25,6 +26,7 @@ def delete_empty_info(data: list[dict]) -> list:
 def delete_useless_info(data: list) -> list:
     j = 0
     for txt in data:
+        print(txt)
         if txt["Свойство"] == "ИД товара на площадке Tmall" or txt["Свойство"] == "Код ролика на YouTube":
             del data[j]
         j = j + 1
@@ -49,7 +51,7 @@ def filter_camel_for_json(json_to_reformat: list) -> list:
     return json_to_reformat
 
 
-def remove_text_between_parens(text: str) -> str:
+def remove_text_between_parens(text: str) -> str: # удаление мусора в скобках
     n = 1
     while n:
         text, n = re.subn(r'\([^()]*\)', '', text)
@@ -81,62 +83,25 @@ def read_excel(path: str, sheet_name: str = "0") -> pd.DataFrame:
 
 
 ##############################################################################################################
-def load_and_processing_excel(filename: str) -> pd.DataFrame:  # загрузка файла и первичная обработка таблицы
+def load_and_processing_excel_csv(filename: str) -> pd.DataFrame:  # загрузка файла и первичная обработка таблицы
     start_time = time.time()
 
-    #df1 = pd.read_csv(file, on_bad_lines='skip', sep=";")
-    df1 = read_excel(filename, 0)
+    if os.path.splitext(filename)[1] == ".xlsx":
+        table = read_excel(filename, 0)
+    else:
+        table = pd.read_csv(filename, on_bad_lines='skip', sep=";")
 
     print("--- %s seconds for open ---" % (time.time() - start_time))
     start_time = time.time()
 
-    # удаление пустых столбцов и строчек, сброс индексации и переименование столбцов
-    df1.dropna(axis='columns', how='all', inplace=True)
-    df1.dropna(axis=0, how='all', inplace=True)
-
-    df1.reset_index(drop=True, inplace=True)
-
-    # применяем Camel фильтр
-    df1 = df1.rename(columns=lambda col: filter_camel_for_text(col))
-
-
-    # Обновляем индексацию
-    table = df1
-    table.dropna(axis='columns', how='all', inplace=True)
-
-    # удаление столбцов, где все значения одинаковые
-    cols = table.columns
-    for i in range(len(table.columns)):
-        unics = table[cols[i]].unique()
-        if len(unics) == 1 and table[cols[i]].isna().sum() == 0:
-            table.drop([cols[i]], axis=1, inplace=True)
-
-    # удаление мусора в скобках
-    table["JSONГабариты"] = table["JSONГабариты"].apply(remove_text_between_parens)
-    table["JSONВставки"] = table["JSONВставки"].apply(remove_text_between_parens)
-    table["JSONТеги"] = table["JSONТеги"].apply(remove_text_between_parens)
-
     # преобразование строк в json формат
+    table["JSONВставки"] = table["JSONВставки"].str.replace(chr(39), chr(34))
+    table["JSONГабариты"] = table["JSONГабариты"].str.replace(chr(39), chr(34))
+    table["JSONТеги"] = table["JSONТеги"].str.replace(chr(39), chr(34))
+
     table["JSONВставки"] = table["JSONВставки"].apply(json.loads)
     table["JSONГабариты"] = table["JSONГабариты"].apply(json.loads)
     table["JSONТеги"] = table["JSONТеги"].apply(json.loads)
-
-
-
-    # camel для столбцов
-    table["JSONВставки"] = table["JSONВставки"].apply(filter_camel_for_json)  # type: ignore
-
-    # очистка json от мусора
-    table["JSONГабариты"] = table["JSONГабариты"].apply(delete_useless_info)  # type: ignore
-
-    # здесь почему-то падает
-    table["JSONВставки"] = table["JSONВставки"].apply(delete_empty_info)  # type: ignore
-    table["JSONГабариты"] = table["JSONГабариты"].apply(delete_empty_info)  # type: ignore
-
-
-
-    table["JSONГабариты"] = table["JSONГабариты"].apply(reformat_json)  # type: ignore
-    table["Путь к фото"] = table["Путь к фото"].apply(fix_foto_links)
 
     print("--- %s seconds for processing ---" % (time.time() - start_time))
 
@@ -144,6 +109,8 @@ def load_and_processing_excel(filename: str) -> pd.DataFrame:  # загрузк�
 
 
 def download_image(link: str, name: str) -> str:  # link from table["Путь к фото"]  name from table['Наименование']
+    if not os.path.exists("jewelry_images"):
+        os.mkdir("jewelry_images")
     img = requests.get(link)
     locate = './jewelry_images/' + str(name) + '.jpg'
     img_file = open(locate, 'wb')
@@ -175,4 +142,8 @@ def transform_to_json(df: pd.DataFrame) -> list:  # преобразует та�
 # path = "C:/Users/artem/Documents/Scenery-Vision/one.xlsx"
 # print(load_and_processing_excel(path))
 # print(download_image("https://pmdn.sokolov.io/pics/FF/07/8B665EE52135149851E8F077FDEA.jpg", "test"))
-
+# filename = input("Введите путь к файлу: ")
+# download_image(filename, "111")
+# print("done")
+# path = "C:/Users/artem/Documents/Desktop/SOKOLOV_ALL.csv"
+# load_and_processing_excel_csv(path)
