@@ -159,6 +159,8 @@ class MainWindow(QMainWindow):
         if user_filename != "":
             file_name = user_filename + '.xlsx'
             excel_save(Thread.final_data, file_name)
+        else:
+            QtWidgets.QMessageBox.critical(None, "Файл не сохранен", "Вы не указали имя файла, попробуйте еще раз")
 
     def change_page_left(self):  # left
         global page_index
