@@ -78,7 +78,9 @@ def read_excel(path: str, sheet_name: str = "0") -> pd.DataFrame:
     Xlsx2csv(path, outputencoding="utf-8", sheet_name=sheet_name).convert(buffer)
     buffer.seek(0)
     start_time = time.time()
-    df = pd.read_csv(buffer)
+    df = pd.read_csv(buffer, dtype={'Цвет дополнительного металла/покрытие': str,
+                                    'Основной вид металла': str, 'Дополнительный вид металла': str,
+                                    'Цвет дополнительного металла покрытие': str})
     return df
 
 
@@ -87,9 +89,9 @@ def load_and_processing_excel_csv(filename: str) -> pd.DataFrame:  # загру�
     start_time = time.time()
 
     if os.path.splitext(filename)[1] == ".xlsx":
-        table = read_excel(filename, 0)
+        table = read_excel(filename)
     else:
-        table = pd.read_csv(filename, on_bad_lines='skip', sep=";")
+        table = pd.read_csv(filename)
 
     print("--- %s seconds for open ---" % (time.time() - start_time))
     start_time = time.time()
@@ -145,5 +147,5 @@ def transform_to_json(df: pd.DataFrame) -> list:  # преобразует та�
 # filename = input("Введите путь к файлу: ")
 # download_image(filename, "111")
 # print("done")
-# path = "C:/Users/artem/Documents/Desktop/SOKOLOV_ALL.csv"
-# load_and_processing_excel_csv(path)
+#path = "C:/Users/Artem Sannikov/Documents/Scenery Vision/SOKOLOV_ALL.xlsx"
+#print(load_and_processing_excel_csv(path))

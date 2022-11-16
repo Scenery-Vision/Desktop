@@ -29,6 +29,7 @@ char_index = 0
 desc_index = 0
 
 
+
 class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
@@ -118,17 +119,13 @@ class MainWindow(QMainWindow):
     def description_buttons(self, n):
         global desc_index
         desc_index = n
-        self.load_page(download_image(Thread.final_data["Путь к фото"][page_index],
-                                      Thread.final_data["Артикул"][page_index]), Thread.final_data, page_index,
-                       char_index, desc_index)
+        self.load_page_without_foto(Thread.final_data, page_index, char_index, desc_index)
 
     # Characteristics radio buttons function
     def characteristic_buttons(self, n):
         global char_index
         char_index = n
-        self.load_page(download_image(Thread.final_data["Путь к фото"][page_index],
-                                      Thread.final_data["Артикул"][page_index]), Thread.final_data, page_index,
-                       char_index, desc_index)
+        self.load_page_without_foto(Thread.final_data, page_index, char_index, desc_index)
 
     # Browse files function
     def browse_files(self):
@@ -200,6 +197,33 @@ class MainWindow(QMainWindow):
         self.ui.descreption_label.setText(generated_description)  # type: ignore
         self.ui.descreption_label.setWordWrap(True)
 
+    def load_page_without_foto(self, generated_data: pd.DataFrame,
+                               page_idx: int, chars_idx: int,
+                               description_idx: int,
+                               description_col: str = "Описание",
+                               chars_on_page: int = 4
+                               ) -> None:
+        if len(generated_data["Название"][page_idx]) > 45:
+            label = generated_data["Название"][page_idx]
+            i = 45
+            while label[i] != ' ':
+                i = i - 1
+            warped_label = label[:i] + "<br>" + label[i:]
+            self.ui.title_label.setText(warped_label)
+        else:
+            self.ui.title_label.setText(generated_data["Название"][page_idx])
+
+        self.ui.title_label.setTextFormat(1)
+        self.ui.title_label.setAlignment(QtCore.Qt.AlignCenter)
+
+        characteristics = generated_data.dropna(axis=1).columns.tolist()
+        cur_characteristics = characteristics[chars_idx * chars_on_page:chars_idx * chars_on_page + chars_on_page]
+        characteristics_data = generated_data[cur_characteristics].iloc[page_idx].copy()
+
+        self.load_chars(characteristics_data)
+        self.load_description(
+            description_data=generated_data[f"{description_col}{description_idx + 1}"].iloc[page_idx])  # type: ignore
+
     def load_page(
             self, image_path: str,
             generated_data: pd.DataFrame,
@@ -225,8 +249,6 @@ class MainWindow(QMainWindow):
 
         self.ui.title_label.setTextFormat(1)
         self.ui.title_label.setAlignment(QtCore.Qt.AlignCenter)
-
-
 
         characteristics = generated_data.dropna(axis=1).columns.tolist()
         cur_characteristics = characteristics[chars_idx * chars_on_page:chars_idx * chars_on_page + chars_on_page]
@@ -265,4 +287,3 @@ if __name__ == "__main__":
 ##############################################################################################################
 # # END
 ##############################################################################################################
-

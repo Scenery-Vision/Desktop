@@ -4,7 +4,7 @@ import pandas as pd
 import requests
 from PyQt5.QtCore import QThread, pyqtSignal, pyqtSlot
 
-from exel_part import load_and_processing_excel_csv, transform_to_json
+from exel_part import *
 
 glob_size = 0
 load_flag = False
@@ -36,7 +36,7 @@ class APIThread(QThread):
         self.url_to_api = "http://127.0.0.1:3350/scenery-vision/api/v1.0/generation"
 
         self.path_to_table = path_to_table
-        self.table = None  # type: ignore
+        self.table = pd.DataFrame()
         self.size = 0
         self.count = 0
         self.flag = False
@@ -83,3 +83,5 @@ class APIThread(QThread):
     def get_response(self, json_request):
         response = requests.post(self.url_to_api, json=json_request)
         return response.json()
+
+
