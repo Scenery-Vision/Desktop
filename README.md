@@ -2,7 +2,7 @@
   <a href="" rel="noopener">
  <img src="https://res.cloudinary.com/hackatonapp/image/upload/c_fill,h_1440,q_auto,w_2560/v1/GeekBattle/events/cover-images/j5nf1toamwk3sgshc3tr" alt="Hackathon logo"></a>
 </p>
-<h3 align="center">Scenery Vision</h3>
+<h3 align="center">Scenery Vision. Desktop приложение</h3>
 
 <div align="center">
 
