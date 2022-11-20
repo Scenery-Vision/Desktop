@@ -1,4 +1,12 @@
-<table align="center" frame="void">
+<style>
+td, th, table {
+   border: none!important;
+}
+</style>
+
+
+
+<table align="center" frame="void" >
    <tr> 
     <td class="leftcol"><img src="https://user-images.githubusercontent.com/73960471/202878705-152ab78f-e5e5-4804-86b4-2511afd58534.png" 
     width="200" alt="Вы не поверите, но это ёжик"></td>
