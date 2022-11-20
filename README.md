@@ -1,19 +1,19 @@
-<p align="center">
-  <a href="" rel="noopener">
- <img src="https://user-images.githubusercontent.com/73960471/202877762-e2a5770d-9ea8-46f4-aa7e-51323abcb5fa.png" alt="Hackathon logo" width="250"></a>
-</p>
-<h3 align="center">Scenery Vision. Desktop приложение</h3>
-
-<div align="center">
-
-
-
-
+<table align="center">
+   <tr> 
+    <td class="leftcol"><img src="https://user-images.githubusercontent.com/73960471/202878705-152ab78f-e5e5-4804-86b4-2511afd58534.png" 
+    width="200" alt="Вы не поверите, но это ёжик"></td>
+    <td valign="center" align="center">
+    
+   <h3>Scenery Vision. Desktop приложение</h3>
+   
 [![Project](https://img.shields.io/badge/Project-SceneryVision-red)](https://pt.2035.university/project/scenery-vision)
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![License](https://img.shields.io/badge/license-AGPL--3.0%20license-blue)](LICENSE.md)
-
-</div>
+    
+    
+   </tr>
+  </table>
+  
 
 ---
 
