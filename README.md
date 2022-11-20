@@ -1,10 +1,13 @@
 <p align="center">
   <a href="" rel="noopener">
- <img src="https://res.cloudinary.com/hackatonapp/image/upload/c_fill,h_1440,q_auto,w_2560/v1/GeekBattle/events/cover-images/j5nf1toamwk3sgshc3tr" alt="Hackathon logo"></a>
+ <img src="https://user-images.githubusercontent.com/73960471/202877762-e2a5770d-9ea8-46f4-aa7e-51323abcb5fa.png" alt="Hackathon logo" width="250"></a>
 </p>
 <h3 align="center">Scenery Vision. Desktop приложение</h3>
 
 <div align="center">
+
+
+
 
 [![Project](https://img.shields.io/badge/Project-SceneryVision-red)](https://pt.2035.university/project/scenery-vision)
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
