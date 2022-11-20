@@ -18,7 +18,7 @@
 ---
 
 <p align="center">
-Scenery Vision - интеллектуальное решение для автоматической генерации текста с помощью ИИ.
+Scenery Vision - интеллектуальная система для автоматической генерации текста с помощью ИИ.
     <br>
 </p>
 
@@ -26,7 +26,6 @@ Scenery Vision - интеллектуальное решение для авто
 
 - [Постановка задачи](#problem_statement)
 - [Решение](#idea)
-- [Зависимости и лимиты](#limitations)
 - [Идеи развития](#future_scope)
 - [Как запустить](#getting_started)
 - [Как использовать](#usage)
@@ -42,65 +41,52 @@ Scenery Vision - интеллектуальное решение для авто
 
 ## 💡 Решение <a name = "idea"></a>
 
-This section is used to describe potential solutions.
-
-Once the ideal, reality, and consequences sections have been
-completed, and understood, it becomes easier to provide a solution for solving the problem.
-
-## ⛓️ Зависимости и лимиты <a name = "limitations"></a>
-
-- What are the dependencies of your project?
-- Describe each limitation in detailed but concise terms
-- Explain why each limitation exists
-- Provide the reasons why each limitation could not be overcome using the method(s) chosen to acquire.
-- Assess the impact of each limitation in relation to the overall findings and conclusions of your project, and if
-  appropriate, describe how these limitations could point to the need for further research.
+Для достижения поставленной цели было разработана концепция системы. Система разделена на 2 основные части - сервер и клиент, клиентом могут выступать Desktop приложение
+или web-интерфейс. В данном репозитории рассматривается Desktop-приложение-клиент. Приложение написано на языке Python с использованием PyQt. Оно умеет 
+принимать пользовательские данные отправлять их на сервер, получать результаты генерации с сервера и формировать вывод в интерфейс,
+также собирать результаты генерации в общую таблицу.
 
 ## 🚀 Идеи развития <a name = "future_scope"></a>
 
-Write about what you could not develop during the course of the Hackathon; and about what your project can achieve
-in the future.
+В ближайшее время планируется создать редизайн интерфейса и добавить некоторые фичи.
 
 ## 🏁 Как запустить <a name = "getting_started"></a>
 
-These instructions will get you a copy of the project up and running on your local machine for development
-and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+Данная инструкция поможет вам запустить и протестировать наше приложение.
 
-### Prerequisites
+### Библиотеки
 
-What things you need to install the software and how to install them.
-
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running.
-
-Say what the step will be
+Все необходимые библиотеки устанавливаются с помощью следующей команды.
 
 ```
-Give the example
+pip install requirements.txt
 ```
 
-And repeat
+### Установка и запуск
+
+Для работы с приложением необходимо запустить файл main.py
 
 ```
-until finished
+python main.py
 ```
 
 ## 🎈 Как использовать <a name="usage"></a>
 
-Add notes about how to use the system.
+Для полноценной работы приложения сервер должен быть запущен. Также необходим выход в интернет. После открытия приложения
+вы выбираете файл-таблицу, для примера можно использовать небольшую таблицу SOKOLOV_SHORT.xlsx .
+Далее приложение загружает таблицу и начинает общение с сервером, и выводит полученные результаты в интерфейс. 
+В любой момент можно экспортировать полученные данные в виде excel таблицы, или загрузить новый файл.
+
 
 ## ⛏️ Использованные технологии <a name = "tech_stack"></a>
 
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
+- [PyQt](https://doc.qt.io/qtforpython/) - Qt Framework for python
+- [Pandas](https://pandas.pydata.org/) - data analysis tool
+- [Requests](https://github.com/psf/requests) - HTTP library
+- [multiprocessing](https://docs.python.org/3/library/multiprocessing.html) - Package for processes
 
 ## ✍️ Авторы <a name = "authors"></a>
 
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
+- [@artem-sann](https://github.com/artem-sann) - Idea & Initial work
+- [@tiffirg](https://github.com/tiffirg) - API interaction
+- [@dgcjcjclb](https://github.com/dgcjcjclb) - UI/UX Design
