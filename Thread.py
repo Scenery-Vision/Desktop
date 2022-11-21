@@ -1,8 +1,4 @@
-import time
-
-import pandas as pd
-import requests
-from PyQt5.QtCore import QThread, pyqtSignal, pyqtSlot
+from PyQt5.QtCore import QThread, pyqtSignal
 
 from exel_part import *
 
@@ -59,7 +55,18 @@ class APIThread(QThread):
                 if self.count >= self.size:
                     return
                 slice = self.table.iloc[self.count: self.count + self.batch]
-                slice_copy = slice.drop(columns=["Комплект номенклатуры"])
+                slice_copy = slice[['Название', 'Бренд', 'Изделие с регулируемым размером', 'Средний вес',
+                                    'Ценовой сегмент', 'Тип металла', 'Проба', 'Цвет металла/покрытия',
+                                    'Цвет изделия', 'Дизайн 1', 'Дизайн 2', 'Дизайн 3', 'Стиль',
+                                    'Стиль номенклатуры', 'Перечисление тематик номенклатуры',
+                                    'Перечисление всех вставок', 'Общее количество вставок',
+                                    'Камень основной вставки', 'Каратный вес основного бриллианта',
+                                    'Подкласс товара', 'Тип изделия', 'Основная категория',
+                                    'Товарная категория', 'Товарная подкатегория', 'Общий тип изделия',
+                                    'Уточнение типа изделия', 'Дополнительное описание изделия',
+                                    'Плетение цепи', 'Вид замка', 'Символы и надписи', 'Знак зодиака',
+                                    'Религия', 'Лик святого', 'Для детей', 'Для мужчин', 'Для женщин',
+                                    'Теги']]
                 json_slice = transform_to_json(slice_copy)
                 response = self.get_response(json_slice)
                 slice["Описание1"] = [unit["Описание"][0] for unit in response]
@@ -76,12 +83,10 @@ class APIThread(QThread):
                 # self.update_api_data.emit(slice)
                 self.count += self.batch
             except Exception as ex:
-                print(ex)
+                print("Error", ex)
                 time.sleep(1)
-                #load_flag = False
+                # load_flag = False
 
     def get_response(self, json_request):
         response = requests.post(self.url_to_api, json=json_request)
         return response.json()
-
-
