@@ -1,6 +1,7 @@
 from PyQt5.QtCore import QThread, pyqtSignal
 
 from exel_part import *
+from multiprocessing import Process, Pipe
 
 glob_size = 0
 load_flag = False
@@ -9,6 +10,21 @@ emit_data = pd.DataFrame()
 final_data = pd.DataFrame()
 f_data_cnt = 0
 first_load_flag = True
+
+
+def mega_process_suka(conn_s, path_to_table, batch, conn):
+    count = 0
+    table = load_and_processing_excel_csv(path_to_table)
+    size = table.shape[0]
+    conn_s.send(size)
+    conn_s.close()
+    while count <= size:
+        slice = table.iloc[count: count + batch]
+        conn.send(slice)
+        count += batch
+
+
+
 
 
 def update_data(data):
@@ -49,12 +65,18 @@ class APIThread(QThread):
             try:
                 if self.flag:
                     self.flag = False
-                    self.table = load_and_processing_excel_csv(self.path_to_table)  # type: pd.DataFrame
-                    self.size = self.table.shape[0]
-                    self.count = 0
+
+                    parent_conn_s, child_conn_s = Pipe()
+                    parent_conn, child_conn = Pipe()
+                    p = Process(target=mega_process_suka, args=(child_conn_s,self.path_to_table, self.batch, child_conn))
+                    p.start()
+                    self.size = parent_conn_s.recv()
+                    # self.table = load_and_processing_excel_csv(self.path_to_table)  # type: pd.DataFrame
                 if self.count >= self.size:
                     return
-                slice = self.table.iloc[self.count: self.count + self.batch]
+                slice = parent_conn.recv()
+                # slice = self.table.iloc[self.count: self.count + self.batch]
+                # ---------->
                 slice_copy = slice.drop(columns=["Комплект номенклатуры"])
                 # slice_copy = slice[['Название', 'Бренд', 'Изделие с регулируемым размером', 'Средний вес',
                 #                     'Ценовой сегмент', 'Тип металла', 'Проба', 'Цвет металла/покрытия',
@@ -81,8 +103,10 @@ class APIThread(QThread):
                     # я пока так сделал, но потом перепишу нормально не бей пж
 
                 load_flag = True
-                # self.update_api_data.emit(slice)
                 self.count += self.batch
+                if self.count >= self.size:
+                    p.join()
+
             except Exception as ex:
                 print("Error", ex)
                 time.sleep(1)
