@@ -20,14 +20,11 @@ def mega_process_suka(conn_s, path_to_table, batch, conn):
     conn_s.close()
     while count <= size:
         slice = table.iloc[count: count + batch]
-        conn.send(slice)
+        conn.send(slice.to_json())
         count += batch
 
-
-
-
-
-def update_data(data):
+def update_data(data_t):
+    data = data_t.copy()
     print("пришло в update")  # Получение данных с обновлением API
     global final_data
     final_data = final_data.append(data, ignore_index=True)
@@ -74,7 +71,8 @@ class APIThread(QThread):
                     # self.table = load_and_processing_excel_csv(self.path_to_table)  # type: pd.DataFrame
                 if self.count >= self.size:
                     return
-                slice = parent_conn.recv()
+                slice = pd.read_json(parent_conn.recv())
+
                 # slice = self.table.iloc[self.count: self.count + self.batch]
                 # ---------->
                 slice_copy = slice.drop(columns=["Комплект номенклатуры"])

@@ -191,6 +191,18 @@ class MainWindow(QMainWindow):
             [f"{char_key}: {char_val}" for char_key, char_val in zip(chars_data.index, chars_data.values)])
         self.ui.characteristics_label.setText(generated_text)
         self.ui.characteristics_label.setWordWrap(True)
+        print(chars_data["Артикул"])
+        print(chars_data["Средний вес"])
+        # zipped_values = zip(chars_data.index, chars_data.values)
+        # zipped_list = list(zipped_values)
+        # print(zipped_list[0])
+        # print(zipped_list[1])
+        # print(zipped_list[2])
+        # print(zipped_list[3])
+        # print(zipped_list[4])
+        # print(zipped_list[5])
+        # print(zipped_list[6])
+
 
     def load_description(self, description_data: pd.Series) -> None:
         generated_description = description_data
@@ -237,14 +249,26 @@ class MainWindow(QMainWindow):
 
         # self.ui.title_label.setWordWrap(True)
         # custom WordWarp:
-        if len(generated_data["Название"][page_idx]) > 45:
+        str_size = 30
+        if len(generated_data["Название"][page_idx]) > str_size*2:
             label = generated_data["Название"][page_idx]
-            i = 45
+            i = str_size*2
+            while label[i] != ' ':
+                i = i - 1
+            warped_label = label[:i] + "<br>" + label[i:]
+            i = str_size
+            while warped_label[i] != ' ':
+                i = i - 1
+            warped_label = warped_label[:i] + "<br>" + warped_label[i:]
+            self.ui.title_label.setText(warped_label)
+        if str_size < len(generated_data["Название"][page_idx]) < str_size*2:
+            label = generated_data["Название"][page_idx]
+            i = str_size
             while label[i] != ' ':
                 i = i - 1
             warped_label = label[:i] + "<br>" + label[i:]
             self.ui.title_label.setText(warped_label)
-        else:
+        if len(generated_data["Название"][page_idx]) < str_size:
             self.ui.title_label.setText(generated_data["Название"][page_idx])
 
         self.ui.title_label.setTextFormat(1)
