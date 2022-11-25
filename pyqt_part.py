@@ -2,15 +2,13 @@
 # # IMPORTS
 ##############################################################################################################
 import sys
-import time
 
 from PyQt5.QtGui import QFont, QIcon, QMovie
 
 import Thread
 from exel_part import download_image, excel_save
-from resources_rc import *
 from PyQt5.QtWidgets import *
-from PySide2 import *
+
 
 # IMPORT GUI FILE
 from interface import *
@@ -79,9 +77,55 @@ class MainWindow(QMainWindow):
 
         # Set window title, size grip and icon
         self.setWindowTitle("Scenery Vision")
-        self.setWindowIcon(QIcon(":/icons/images/add_exel.svg"))
+        self.setWindowIcon(QIcon(":/icons/images/logo.svg"))
         self.api_thread = APIThread()
         self.ui.title_label.setText("dddddddeeeeeeeeeeeeeввyy\ngyvyyydddddddd")
+
+        # Make text copyable
+        self.ui.characteristic_1.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_2.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_3.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_4.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_5.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_6.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_7.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_8.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_9.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_10.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_11.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_12.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_13.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_14.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_15.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_16.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_17.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_18.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_19.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.characteristic_20.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+
+        self.ui.label_33.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_34.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_35.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_36.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_37.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_38.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_3.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_4.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_5.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_6.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_7.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_8.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_9.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_19.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_20.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_21.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_22.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_23.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_24.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.label_25.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+
+        self.ui.title_label.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.ui.descreption_label.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
 
         # Minimize window
         self.ui.minimize_window_button.clicked.connect(self.showMinimized)

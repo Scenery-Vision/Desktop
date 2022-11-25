@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icons">
+    <file>images/logo.svg</file>
     <file>images/radio_button.svg</file>
     <file>images/radio_button_active.svg</file>
     <file>images/add_file.svg</file>
