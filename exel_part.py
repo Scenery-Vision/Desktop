@@ -97,13 +97,13 @@ def load_and_processing_excel_csv(filename: str) -> pd.DataFrame:  # загру�
     start_time = time.time()
 
     # преобразование строк в json формат
-    table["JSONВставки"] = table["JSONВставки"].str.replace(chr(39), chr(34))
-    table["JSONГабариты"] = table["JSONГабариты"].str.replace(chr(39), chr(34))
-    table["JSONТеги"] = table["JSONТеги"].str.replace(chr(39), chr(34))
+    table["Вставки"] = table["Вставки"].str.replace(chr(39), chr(34))
+    table["Габариты"] = table["Габариты"].str.replace(chr(39), chr(34))
+    table["Теги"] = table["Теги"].str.replace(chr(39), chr(34))
 
-    table["JSONВставки"] = table["JSONВставки"].apply(json.loads)
-    table["JSONГабариты"] = table["JSONГабариты"].apply(json.loads)
-    table["JSONТеги"] = table["JSONТеги"].apply(json.loads)
+    table["Вставки"] = table["Вставки"].apply(json.loads)
+    table["Габариты"] = table["Габариты"].apply(json.loads)
+    table["Теги"] = table["Теги"].apply(json.loads)
 
     print("--- %s seconds for processing ---" % (time.time() - start_time))
 

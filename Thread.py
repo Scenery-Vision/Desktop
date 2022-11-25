@@ -59,7 +59,7 @@ class APIThread(QThread):
                 if self.count >= self.size:
                     return
                 slice = self.table.iloc[self.count: self.count + self.batch]
-                slice_copy = slice.drop(columns=["Комплект номенклатуры"])
+                slice_copy = slice.drop(columns=["Комплект номенклатуры"]).copy()
                 json_slice = transform_to_json(slice_copy)
                 response = self.get_response(json_slice)
                 slice["Описание1"] = [unit["Описание"][0] for unit in response]
@@ -83,5 +83,3 @@ class APIThread(QThread):
     def get_response(self, json_request):
         response = requests.post(self.url_to_api, json=json_request)
         return response.json()
-
-
