@@ -4,11 +4,11 @@
 import sys
 import time
 
-from PyQt5.QtGui import QFont, QIcon
+from PyQt5.QtGui import QFont, QIcon, QMovie
 
 import Thread
 from exel_part import download_image, excel_save
-from resources import *
+from resources_rc import *
 from PyQt5.QtWidgets import *
 from PySide2 import *
 
@@ -28,11 +28,19 @@ page_index = 0
 char_index = 0
 desc_index = 0
 
+active = '''QPushButton {border: solid;border-radius: 0;border-bottom-width: 5px;color: rgb(99, 54, 109);
+        border-color:rgb(99, 54, 109);padding-top:5px;}QPushButton::hover {color: rgb(146, 92, 154);
+        border-color: rgb(146, 92, 154);background-color: rgba(146, 92, 154, 50);
+        }'''
+non_active = '''QPushButton {border: solid;border-radius: 0;border-bottom-width: 5px;color: rgb(190, 153, 196);
+            border-color: rgb(190, 153, 196);padding-top:5px;}QPushButton::hover {color: rgb(146, 92, 154);
+            border-color: rgb(146, 92, 154);background-color: rgba(146, 92, 154, 50);}'''
 
 
 class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
+        self.movie = None
         self.clickPosition = None
         self.oldPosition = None
         self.ui = Ui_MainWindow()
@@ -40,45 +48,47 @@ class MainWindow(QMainWindow):
 
         # fonts init
         ################################################################################################################
-        font_abhaya_libre_id = QFontDatabase.addApplicationFont(":/fonts/fonts/AbhayaLibre-Regular.ttf")
-        fontName = QFontDatabase.applicationFontFamilies(font_abhaya_libre_id)[0]
-        self.font_abhaya_libre = QFont(fontName, 42)
-        self.ui.scenary_vision_label.setFont(self.font_abhaya_libre)
-
-        font_mulish_medium_id = QFontDatabase.addApplicationFont(":/fonts/fonts/Mulish-Medium.ttf")
-        fontName = QFontDatabase.applicationFontFamilies(font_mulish_medium_id)[0]
-        self.font_mulish_medium = QFont(fontName, 19)
-        self.ui.title_label.setFont(self.font_mulish_medium)
-
-        font_mulish_bold_id = QFontDatabase.addApplicationFont(":/fonts/fonts/Mulish-Bold.ttf")
-        fontName = QFontDatabase.applicationFontFamilies(font_mulish_bold_id)[0]
-        self.font_mulish_bold = QFont(fontName, 12)
-        self.ui.label_2.setFont(self.font_mulish_bold)
-        self.ui.label_5.setFont(self.font_mulish_bold)
-
-        font_mulish_regular_id = QFontDatabase.addApplicationFont(":/fonts/fonts/Mulish-Regular.ttf")
-        fontName = QFontDatabase.applicationFontFamilies(font_mulish_regular_id)[0]
-        self.font_mulish_regular = QFont(fontName, 10)
-        self.ui.characteristics_label.setFont(self.font_mulish_regular)
-        self.ui.descreption_label.setFont(self.font_mulish_regular)
+        # font_abhaya_libre_id = QFontDatabase.addApplicationFont(":/fonts/fonts/AbhayaLibre-Regular.ttf")
+        # fontName = QFontDatabase.applicationFontFamilies(font_abhaya_libre_id)[0]
+        # self.font_abhaya_libre = QFont(fontName, 42)
+        # self.ui.scenary_vision_label.setFont(self.font_abhaya_libre)
+        #
+        # font_mulish_medium_id = QFontDatabase.addApplicationFont(":/fonts/fonts/Mulish-Medium.ttf")
+        # fontName = QFontDatabase.applicationFontFamilies(font_mulish_medium_id)[0]
+        # self.font_mulish_medium = QFont(fontName, 19)
+        # self.ui.title_label.setFont(self.font_mulish_medium)
+        #
+        # font_mulish_bold_id = QFontDatabase.addApplicationFont(":/fonts/fonts/Mulish-Bold.ttf")
+        # fontName = QFontDatabase.applicationFontFamilies(font_mulish_bold_id)[0]
+        # self.font_mulish_bold = QFont(fontName, 12)
+        # self.ui.label_2.setFont(self.font_mulish_bold)
+        # self.ui.label_5.setFont(self.font_mulish_bold)
+        #
+        # font_mulish_regular_id = QFontDatabase.addApplicationFont(":/fonts/fonts/Mulish-Regular.ttf")
+        # fontName = QFontDatabase.applicationFontFamilies(font_mulish_regular_id)[0]
+        # self.font_mulish_regular = QFont(fontName, 10)
+        # self.ui.characteristics_label.setFont(self.font_mulish_regular)
+        # self.ui.descreption_label.setFont(self.font_mulish_regular)
         ################################################################################################################
 
         # Remove window title bar
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)  # type: ignore
         self.ui.stackedWidget.setCurrentWidget(self.ui.exel_page)
+        self.ui.characteristic_stacked_widget.setCurrentWidget(self.ui.characteristic_page_1)
+        self.change_characteristic_button_style(0)
 
-        # Set window title and icon
+        # Set window title, size grip and icon
         self.setWindowTitle("Scenery Vision")
-        self.setWindowIcon(QIcon(":/newPrefix/images/scenery_icon.png"))
+        self.setWindowIcon(QIcon(":/icons/images/add_exel.svg"))
         self.api_thread = APIThread()
         self.ui.title_label.setText("dddddddeeeeeeeeeeeeeввyy\ngyvyyydddddddd")
 
         # Minimize window
-        self.ui.minimize_window_button.clicked.connect(lambda: self.showMinimized())
+        self.ui.minimize_window_button.clicked.connect(self.showMinimized)
         # Close window
-        self.ui.close_window_button.clicked.connect(lambda: self.close())
+        self.ui.close_window_button.clicked.connect(self.close)
         # Restore/Maximize window
-        self.ui.restore_window_button.clicked.connect(lambda: self.restore_or_maximize_window())
+        self.ui.restore_window_button.clicked.connect(self.restore_or_maximize_window)
 
         # Exel huge button
         self.ui.exel_button.clicked.connect(self.browse_files)
@@ -101,6 +111,7 @@ class MainWindow(QMainWindow):
         self.ui.description_button_1.clicked.connect(lambda: self.description_buttons(0))
         self.ui.description_button_2.clicked.connect(lambda: self.description_buttons(1))
         self.ui.description_button_3.clicked.connect(lambda: self.description_buttons(2))
+        self.ui.description_button_4.clicked.connect(lambda: self.description_buttons(3))
 
         self.api_thread.update_api_data.connect(self.end_of_first_loading, QtCore.Qt.QueuedConnection)
 
@@ -111,7 +122,7 @@ class MainWindow(QMainWindow):
                 self.clickPosition = e.globalPos()
                 e.accept()
 
-        self.ui.top_header.mouseMoveEvent = moveWindow
+        self.ui.header.mouseMoveEvent = moveWindow
 
         self.show()
 
@@ -119,12 +130,30 @@ class MainWindow(QMainWindow):
     def description_buttons(self, n):
         global desc_index
         desc_index = n
+        if n == 0:
+            self.change_description_button_style(0)
+        elif n == 1:
+            self.change_description_button_style(1)
+        elif n == 2:
+            self.change_description_button_style(2)
+        else:
+            self.change_description_button_style(3)
         self.load_page_without_foto(Thread.final_data, page_index, char_index, desc_index)
 
     # Characteristics radio buttons function
     def characteristic_buttons(self, n):
         global char_index
         char_index = n
+        if n == 0:
+            self.ui.characteristic_stacked_widget.setCurrentWidget(self.ui.characteristic_page_1)
+            self.change_characteristic_button_style(0)
+        elif n == 1:
+            self.ui.characteristic_stacked_widget.setCurrentWidget(self.ui.characteristic_page_2)
+            self.change_characteristic_button_style(1)
+        else:
+            self.ui.characteristic_stacked_widget.setCurrentWidget(self.ui.characteristic_page_3)
+            self.change_characteristic_button_style(2)
+
         self.load_page_without_foto(Thread.final_data, page_index, char_index, desc_index)
 
     # Browse files function
@@ -137,7 +166,14 @@ class MainWindow(QMainWindow):
         desc_index = 0
         self.ui.stackedWidget.setCurrentWidget(self.ui.exel_page)
         file_name = QFileDialog.getOpenFileName(self, 'open file', 'C:', 'XLSX files (*xlsx);;CSV files (*csv)')[0]
+
         self.ui.stackedWidget.setCurrentWidget(self.ui.loading_page)
+
+        gif_path = 'images/load.gif'
+        gif = QtGui.QMovie(gif_path)
+        self.ui.loading_label.setMovie(gif)
+        gif.start()
+
         if file_name != "":
             self.api_thread.reset_file(file_name)
             self.api_thread.start()
@@ -187,10 +223,7 @@ class MainWindow(QMainWindow):
                            char_index, desc_index)
 
     def load_chars(self, chars_data: pd.Series) -> None:
-        generated_text = "\n".join(
-            [f"{char_key}: {char_val}" for char_key, char_val in zip(chars_data.index, chars_data.values)])
-        self.ui.characteristics_label.setText(generated_text)
-        self.ui.characteristics_label.setWordWrap(True)
+        pass
 
     def load_description(self, description_data: pd.Series) -> None:
         generated_description = description_data
@@ -203,22 +236,35 @@ class MainWindow(QMainWindow):
                                description_col: str = "Описание",
                                chars_on_page: int = 4
                                ) -> None:
-        if len(generated_data["Название"][page_idx]) > 45:
+
+        # custom WordWarp:
+        str_size = 30
+        if len(generated_data["Название"][page_idx]) > str_size * 2:
             label = generated_data["Название"][page_idx]
-            i = 45
+            i = str_size * 2
+            while label[i] != ' ':
+                i = i - 1
+            warped_label = label[:i] + "<br>" + label[i:]
+            i = str_size
+            while warped_label[i] != ' ':
+                i = i - 1
+            warped_label = warped_label[:i] + "<br>" + warped_label[i:]
+            self.ui.title_label.setText(warped_label)
+        if str_size < len(generated_data["Название"][page_idx]) < str_size * 2:
+            label = generated_data["Название"][page_idx]
+            i = str_size
             while label[i] != ' ':
                 i = i - 1
             warped_label = label[:i] + "<br>" + label[i:]
             self.ui.title_label.setText(warped_label)
-        else:
+        if len(generated_data["Название"][page_idx]) < str_size:
             self.ui.title_label.setText(generated_data["Название"][page_idx])
 
         self.ui.title_label.setTextFormat(1)
         self.ui.title_label.setAlignment(QtCore.Qt.AlignCenter)
 
         characteristics = generated_data.dropna(axis=1).columns.tolist()
-        cur_characteristics = characteristics[chars_idx * chars_on_page:chars_idx * chars_on_page + chars_on_page]
-        characteristics_data = generated_data[cur_characteristics].iloc[page_idx].copy()
+        characteristics_data = generated_data.iloc[page_idx].copy()
 
         self.load_chars(characteristics_data)
         self.load_description(
@@ -235,31 +281,65 @@ class MainWindow(QMainWindow):
         pixmap = QtGui.QPixmap(image_path)
         self.ui.image_label.setPixmap(pixmap)
 
-        # self.ui.title_label.setWordWrap(True)
         # custom WordWarp:
-        if len(generated_data["Название"][page_idx]) > 45:
+        str_size = 30
+        if len(generated_data["Название"][page_idx]) > str_size * 2:
             label = generated_data["Название"][page_idx]
-            i = 45
+            i = str_size * 2
+            while label[i] != ' ':
+                i = i - 1
+            warped_label = label[:i] + "<br>" + label[i:]
+            i = str_size
+            while warped_label[i] != ' ':
+                i = i - 1
+            warped_label = warped_label[:i] + "<br>" + warped_label[i:]
+            self.ui.title_label.setText(warped_label)
+        if str_size < len(generated_data["Название"][page_idx]) < str_size * 2:
+            label = generated_data["Название"][page_idx]
+            i = str_size
             while label[i] != ' ':
                 i = i - 1
             warped_label = label[:i] + "<br>" + label[i:]
             self.ui.title_label.setText(warped_label)
-        else:
+        if len(generated_data["Название"][page_idx]) < str_size:
             self.ui.title_label.setText(generated_data["Название"][page_idx])
 
         self.ui.title_label.setTextFormat(1)
         self.ui.title_label.setAlignment(QtCore.Qt.AlignCenter)
 
         characteristics = generated_data.dropna(axis=1).columns.tolist()
-        cur_characteristics = characteristics[chars_idx * chars_on_page:chars_idx * chars_on_page + chars_on_page]
-        characteristics_data = generated_data[cur_characteristics].iloc[page_idx].copy()
+        characteristics_data = generated_data.iloc[page_idx].copy()
 
         self.load_chars(characteristics_data)
         self.load_description(
             description_data=generated_data[f"{description_col}{description_idx + 1}"].iloc[page_idx])  # type: ignore
 
-    # Add mouse events to the window
+    def change_characteristic_button_style(self, n):
+        self.ui.characteristic_button_1.setStyleSheet(non_active)
+        self.ui.characteristic_button_2.setStyleSheet(non_active)
+        self.ui.characteristic_button_3.setStyleSheet(non_active)
+        if n == 0:
+            self.ui.characteristic_button_1.setStyleSheet(active)
+        elif n == 1:
+            self.ui.characteristic_button_2.setStyleSheet(active)
+        else:
+            self.ui.characteristic_button_3.setStyleSheet(active)
 
+    def change_description_button_style(self, n):
+        self.ui.description_button_1.setStyleSheet(non_active)
+        self.ui.description_button_2.setStyleSheet(non_active)
+        self.ui.description_button_3.setStyleSheet(non_active)
+        self.ui.description_button_4.setStyleSheet(non_active)
+        if n == 0:
+            self.ui.description_button_1.setStyleSheet(active)
+        elif n == 1:
+            self.ui.description_button_2.setStyleSheet(active)
+        elif n == 2:
+            self.ui.description_button_3.setStyleSheet(active)
+        else:
+            self.ui.description_button_4.setStyleSheet(active)
+
+    # Add mouse events to the window
     def mousePressEvent(self, event):
         self.clickPosition = event.globalPos()
 
@@ -267,12 +347,11 @@ class MainWindow(QMainWindow):
     # Also it is possible to add changing icon on the button
     def restore_or_maximize_window(self):
         if self.isMaximized():
-            self.ui.restore_window_button.setStyleSheet(
-                "QPushButton#restore_window_button {\nwidth: 30px;\nheight: 30px;\nborder-image: url(:/newPrefix/images/restore_maximize_2.svg);\n}\nQPushButton#restore_window_button::hover {\nwidth: 30px;\nheight: 30px;\nbackground-color: rgb(85, 170, 255);\nborder-image: url(:/newPrefix/images/restore_maximize_2.svg);\n}")
+            self.ui.restore_window_button.setIcon(QtGui.QIcon((":/icons/images/restore_maximize_1.svg")))
+
             self.showNormal()
         else:
-            self.ui.restore_window_button.setStyleSheet(
-                "QPushButton#restore_window_button {\nwidth: 30px;\nheight: 30px;\nborder-image: url(:/newPrefix/images/restore_maximize_1.svg);\n}\nQPushButton#restore_window_button::hover {\nwidth: 30px;\nheight: 30px;\nbackground-color: rgb(85, 170, 255);\nborder-image: url(:/newPrefix/images/restore_maximize_1.svg);\n}")
+            self.ui.restore_window_button.setIcon(QtGui.QIcon((":/icons/images/restore_maximize_2.svg")))
             self.showMaximized()
 
 

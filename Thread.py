@@ -33,7 +33,7 @@ class APIThread(QThread):
     def __init__(self, path_to_table=""):
         super().__init__()
         self.batch = 3
-        self.url_to_api = "http://127.0.0.1:3350/scenery-vision/api/v1.0/generation"
+        self.url_to_api = "http://127.0.0.1:5000/scenery-vision/api/v1.0/generation"
 
         self.path_to_table = path_to_table
         self.table = pd.DataFrame()
@@ -83,5 +83,3 @@ class APIThread(QThread):
     def get_response(self, json_request):
         response = requests.post(self.url_to_api, json=json_request)
         return response.json()
-
-
