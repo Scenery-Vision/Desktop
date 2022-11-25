@@ -138,6 +138,7 @@ class MainWindow(QMainWindow):
             self.change_description_button_style(2)
         else:
             self.change_description_button_style(3)
+            desc_index = 2
         self.load_page_without_foto(Thread.final_data, page_index, char_index, desc_index)
 
     # Characteristics radio buttons function
@@ -223,7 +224,28 @@ class MainWindow(QMainWindow):
                            char_index, desc_index)
 
     def load_chars(self, chars_data: pd.Series) -> None:
-        pass
+        self.ui.characteristic_1.setText(chars_data.values[0])
+        self.ui.characteristic_2.setText(chars_data.values[34])
+        self.ui.characteristic_3.setText(str(chars_data.values[4]))
+        self.ui.characteristic_4.setText(str(chars_data.values[5]))
+        self.ui.characteristic_5.setText(str(chars_data.values[7]))
+        self.ui.characteristic_6.setText(str(chars_data.values[9]))
+        self.ui.characteristic_7.setText(str(chars_data.values[8]))
+        self.ui.characteristic_8.setText(str(chars_data.values[14]))
+        self.ui.characteristic_9.setText(str(chars_data.values[2]))
+        self.ui.characteristic_10.setText(str(chars_data.values[36]))
+        self.ui.characteristic_11.setText(str(chars_data.values[23]))
+        self.ui.characteristic_12.setText(str(chars_data.values[26]))
+        self.ui.characteristic_13.setText(str(chars_data.values[27]))
+        self.ui.characteristic_14.setText(str(chars_data.values[42]))
+        self.ui.characteristic_15.setText(str(chars_data.values[43]))
+        self.ui.characteristic_16.setText(str(chars_data.values[44]))
+        self.ui.characteristic_17.setText(str(chars_data.values[45]))
+        self.ui.characteristic_18.setText(str(chars_data.values[46]))
+        self.ui.characteristic_19.setText(str(chars_data.values[47]))
+        self.ui.characteristic_20.setText("  ")
+
+
 
     def load_description(self, description_data: pd.Series) -> None:
         generated_description = description_data
@@ -238,7 +260,7 @@ class MainWindow(QMainWindow):
                                ) -> None:
 
         # custom WordWarp:
-        str_size = 30
+        str_size = 22
         if len(generated_data["Название"][page_idx]) > str_size * 2:
             label = generated_data["Название"][page_idx]
             i = str_size * 2
@@ -282,7 +304,7 @@ class MainWindow(QMainWindow):
         self.ui.image_label.setPixmap(pixmap)
 
         # custom WordWarp:
-        str_size = 30
+        str_size = 22
         if len(generated_data["Название"][page_idx]) > str_size * 2:
             label = generated_data["Название"][page_idx]
             i = str_size * 2
