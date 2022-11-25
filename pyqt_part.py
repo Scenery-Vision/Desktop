@@ -2,7 +2,6 @@
 # # IMPORTS
 ##############################################################################################################
 import sys
-import time
 
 from PyQt5.QtGui import QFont, QIcon
 
@@ -18,7 +17,7 @@ from interface import *
 from qt_material import *
 import pandas as pd
 
-from Thread import APIThread, final_data, f_data_cnt, first_load_flag
+from Thread import APIThread
 
 ##############################################################################################################
 # # MAIN WINDOW CLASS

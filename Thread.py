@@ -75,7 +75,7 @@ class APIThread(QThread):
 
                 # slice = self.table.iloc[self.count: self.count + self.batch]
                 # ---------->
-                slice_copy = slice.drop(columns=["Комплект номенклатуры"])
+                slice_copy = slice.drop(columns=["Комплект номенклатуры"]).copy()
                 # slice_copy = slice[['Название', 'Бренд', 'Изделие с регулируемым размером', 'Средний вес',
                 #                     'Ценовой сегмент', 'Тип металла', 'Проба', 'Цвет металла/покрытия',
                 #                     'Цвет изделия', 'Дизайн 1', 'Дизайн 2', 'Дизайн 3', 'Стиль',
@@ -108,6 +108,7 @@ class APIThread(QThread):
             except Exception as ex:
                 print("Error", ex)
                 time.sleep(1)
+                raise ex
                 # load_flag = False
 
     def get_response(self, json_request):
