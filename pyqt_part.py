@@ -224,10 +224,31 @@ class MainWindow(QMainWindow):
                            char_index, desc_index)
 
     def load_chars(self, chars_data: pd.Series) -> None:
-        # print(Thread.final_data.columns)
-        self.ui.characteristic_1.setText(Thread.final_data["Артикул"][page_index])
-        self.ui.characteristic_2.setText(Thread.final_data["Бренд"][page_index])
-        # self.ui.characteristic_3.setText(Thread.final_data["Средний вес"][page_index])
+        print(chars_data)
+        self.ui.characteristic_1.setText(chars_data.values[0])
+        self.ui.characteristic_2.setText(chars_data.values[1])
+        self.ui.characteristic_3.setText(chars_data.values[2])
+        self.ui.characteristic_4.setText(chars_data.values[3])
+        self.ui.characteristic_5.setText(chars_data.values[1])
+        self.ui.characteristic_6.setText(chars_data.values[2])
+        self.ui.characteristic_7.setText(chars_data.values[3])
+        self.ui.characteristic_8.setText(chars_data.values[2])
+        self.ui.characteristic_9.setText(chars_data.values[3])
+        self.ui.characteristic_10.setText(chars_data.values[2])
+        self.ui.characteristic_11.setText(chars_data.values[3])
+        self.ui.characteristic_12.setText(chars_data.values[3])
+        self.ui.characteristic_13.setText(chars_data.values[3])
+        self.ui.characteristic_14.setText(chars_data.values[3])
+        self.ui.characteristic_15.setText(chars_data.values[3])
+        self.ui.characteristic_16.setText(chars_data.values[3])
+        self.ui.characteristic_17.setText(chars_data.values[3])
+        self.ui.characteristic_18.setText(chars_data.values[3])
+        self.ui.characteristic_19.setText(chars_data.values[3])
+        self.ui.characteristic_20.setText(chars_data.values[3])
+        # artikul = chars_data["Артикул"][page_index]
+        # brend = chars_data["Бренд"][page_index]
+        # self.ui.characteristic_3.setText(Thread.final_data_copy["Средний вес"][page_index])
+
 
 
     def load_description(self, description_data: pd.Series) -> None:

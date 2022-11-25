@@ -1054,5 +1054,5 @@ class Ui_MainWindow(object):
         self.description_button_3.setText(_translate("MainWindow", "2"))
         self.description_button_4.setText(_translate("MainWindow", "3"))
         self.descreption_label.setText(_translate("MainWindow", "juytuftuytufty"))
-        self.label.setText(_translate("MainWindow", "Scenery Vision team"))
+        self.label.setText(_translate("MainWindow", "Copyright© 2022 Scenery Vision. All rights reserved"))
 import resources_rc
