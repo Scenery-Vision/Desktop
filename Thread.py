@@ -87,7 +87,7 @@ class APIThread(QThread):
                 slice = parent_conn.recv()
                 # slice = self.table.iloc[self.count: self.count + self.batch]
                 # ---------->
-                slice_copy = slice.drop(columns=["Комплект номенклатуры"]).copy()
+                # slice_copy = slice.drop(columns=["Комплект номенклатуры"]).copy()
                 # slice_copy = slice[['Название', 'Бренд', 'Изделие с регулируемым размером', 'Средний вес',
                 #                     'Ценовой сегмент', 'Тип металла', 'Проба', 'Цвет металла/покрытия',
                 #                     'Цвет изделия', 'Дизайн 1', 'Дизайн 2', 'Дизайн 3', 'Стиль',
@@ -100,11 +100,20 @@ class APIThread(QThread):
                 #                     'Плетение цепи', 'Вид замка', 'Символы и надписи', 'Знак зодиака',
                 #                     'Религия', 'Лик святого', 'Для детей', 'Для мужчин', 'Для женщин',
                 #                     'Теги']]
-                json_slice = transform_to_json(slice_copy)
+
+                json_slice = {"vendor_codes": slice["Артикул"].to_list()}
                 response = self.get_response(json_slice)
-                slice["Описание1"] = [unit["Описание"][0] for unit in response]
-                slice["Описание2"] = [unit["Описание"][1] for unit in response]
-                slice["Описание3"] = [unit["Описание"][2] for unit in response]
+                slice["Описание1"] = [unit["SEO"] for unit in response]
+                slice["Описание2"] = [unit["Описания"][0] for unit in response]
+                slice["Описание3"] = [unit["Описания"][1] for unit in response]
+                slice["Описание4"] = [unit["Описания"][2] for unit in response]
+                slice["Название"] = [unit["Название"] for unit in response]
+
+                # json_slice = transform_to_json(slice)
+                # response = self.get_response(json_slice)
+                # slice["Описание1"] = [unit["Описание"][0] for unit in response]
+                # slice["Описание2"] = [unit["Описание"][1] for unit in response]
+                # slice["Описание3"] = [unit["Описание"][2] for unit in response]
                 update_data(slice)
                 global load_flag
 
