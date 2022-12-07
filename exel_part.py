@@ -96,7 +96,9 @@ def load_and_processing_excel_csv(filename: str) -> pd.DataFrame:  # загру�
     print("--- %s seconds for open ---" % (time.time() - start_time))
     start_time = time.time()
 
+
     # преобразование строк в json формат
+
     table["Вставки"] = table["Вставки"].str.replace(chr(39), chr(34))
     table["Габариты"] = table["Габариты"].str.replace(chr(39), chr(34))
     table["Теги"] = table["Теги"].str.replace(chr(39), chr(34))

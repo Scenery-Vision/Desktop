@@ -30,7 +30,19 @@ def mega_process_suka(conn_s, path_to_table, batch, conn):
         count += batch
 
 
-def update_data(data):
+def mega_process_suka(conn_s, path_to_table, batch, conn):
+    count = 0
+    table = load_and_processing_excel_csv(path_to_table)
+    size = table.shape[0]
+    conn_s.send(size)
+    conn_s.close()
+    while count <= size:
+        slice = table.iloc[count: count + batch]
+        conn.send(slice.to_json())
+        count += batch
+
+def update_data(data_t):
+    data = data_t.copy()
     print("пришло в update")  # Получение данных с обновлением API
     global final_data
     final_data = final_data.append(data, ignore_index=True)
@@ -75,19 +87,22 @@ class APIThread(QThread):
 
                     parent_conn_s, child_conn_s = Pipe()
                     parent_conn, child_conn = Pipe()
+
                     p = Process(target=mega_process_suka,
                                 args=(child_conn_s, self.path_to_table, self.batch, child_conn))
                     # p2 = Process(target=menu)
                     p.start()
                     # p2.start()
-                    self.size = parent_conn_s.recv()
+  self.size = parent_conn_s.recv()
                     # self.table = load_and_processing_excel_csv(self.path_to_table)  # type: pd.DataFrame
                 if self.count >= self.size:
                     return
+
                 slice = parent_conn.recv()
                 # slice = self.table.iloc[self.count: self.count + self.batch]
                 # ---------->
                 # slice_copy = slice.drop(columns=["Комплект номенклатуры"]).copy()
+
                 # slice_copy = slice[['Название', 'Бренд', 'Изделие с регулируемым размером', 'Средний вес',
                 #                     'Ценовой сегмент', 'Тип металла', 'Проба', 'Цвет металла/покрытия',
                 #                     'Цвет изделия', 'Дизайн 1', 'Дизайн 2', 'Дизайн 3', 'Стиль',
@@ -101,7 +116,9 @@ class APIThread(QThread):
                 #                     'Религия', 'Лик святого', 'Для детей', 'Для мужчин', 'Для женщин',
                 #                     'Теги']]
 
+
                 json_slice = {"vendor_codes": slice["Артикул"].to_list()}
+
                 response = self.get_response(json_slice)
                 slice["Описание1"] = [unit["SEO"] for unit in response]
                 slice["Описание2"] = [unit["Описания"][0] for unit in response]
@@ -129,6 +146,7 @@ class APIThread(QThread):
             except Exception as ex:
                 print("Error", ex)
                 time.sleep(1)
+
                 # load_flag = False
 
     def get_response(self, json_request):

@@ -16,7 +16,7 @@ from interface import *
 from qt_material import *
 import pandas as pd
 
-from Thread import APIThread, final_data, f_data_cnt, first_load_flag
+from Thread import APIThread
 
 ##############################################################################################################
 # # MAIN WINDOW CLASS
@@ -268,6 +268,7 @@ class MainWindow(QMainWindow):
                            char_index, desc_index)
 
     def load_chars(self, chars_data: pd.Series) -> None:
+
         self.ui.characteristic_1.setText(chars_data.values[0])
         self.ui.characteristic_2.setText(chars_data.values[34])
         self.ui.characteristic_3.setText(str(chars_data.values[4]))
@@ -288,6 +289,7 @@ class MainWindow(QMainWindow):
         self.ui.characteristic_18.setText(str(chars_data.values[46]))
         self.ui.characteristic_19.setText(str(chars_data.values[47]))
         self.ui.characteristic_20.setText("  ")
+
 
 
 
@@ -348,10 +350,12 @@ class MainWindow(QMainWindow):
         self.ui.image_label.setPixmap(pixmap)
 
         # custom WordWarp:
+
         str_size = 22
         if len(generated_data["Название"][page_idx]) > str_size * 2:
             label = generated_data["Название"][page_idx]
             i = str_size * 2
+
             while label[i] != ' ':
                 i = i - 1
             warped_label = label[:i] + "<br>" + label[i:]
@@ -361,6 +365,7 @@ class MainWindow(QMainWindow):
             warped_label = warped_label[:i] + "<br>" + warped_label[i:]
             self.ui.title_label.setText(warped_label)
         if str_size < len(generated_data["Название"][page_idx]) < str_size * 2:
+
             label = generated_data["Название"][page_idx]
             i = str_size
             while label[i] != ' ':
