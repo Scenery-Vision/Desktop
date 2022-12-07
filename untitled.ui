@@ -1,0 +1,1926 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1038</width>
+    <height>868</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
+  <property name="windowTitle">
+   <string>Scenery Vision</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/newPrefix/images/scenery_icon.png</normaloff>:/newPrefix/images/scenery_icon.png</iconset>
+  </property>
+  <property name="toolTip">
+   <string/>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">*{
+	border: none;
+	font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-	Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif;
+}
+
+</string>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QWidget#centralwidget {
+	background-color: rgb(221, 212, 230);
+}</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="header">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame#header {
+	background-color: rgb(33, 33, 33);
+}
+
+</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="lineWidth">
+       <number>0</number>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>20</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
+        <widget class="QFrame" name="left_header_frame_with_buttons">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <property name="spacing">
+           <number>15</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="settings_button">
+            <property name="styleSheet">
+             <string notr="true">QPushButton#settings_button {
+	width: 40px;
+    height: 40px;
+	
+	border-image: url(:/icons/images/settings.svg);
+}
+
+QPushButton#settings_button::hover {
+	
+	border-image: url(:/icons/images/settings_hover.svg);
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="add_button">
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton#add_button {
+	width: 30px;
+    height: 40px;
+	border-image: url(:/icons/images/add_file.svg);
+}
+
+QPushButton#add_button::hover {
+	
+	border-image: url(:/icons/images/add_file_hover.svg);
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="download_button">
+            <property name="styleSheet">
+             <string notr="true">QPushButton#download_button {
+	width: 30px;
+    height: 40px;
+	
+	border-image: url(:/icons/images/download_file.svg);
+}
+
+QPushButton#download_button::hover {
+	
+	
+	border-image: url(:/icons/images/download_file_hover.svg);
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>:/newPrefix/images/download.svg</normaloff>:/newPrefix/images/download.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignRight|Qt::AlignTop">
+        <widget class="QFrame" name="frame_with_window_buttons">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="minimize_window_button">
+            <property name="styleSheet">
+             <string notr="true">QPushButton#minimize_window_button {
+	width: 50px;
+	height: 30px;
+}
+
+QPushButton#minimize_window_button::hover {
+	background-color: rgb(144, 202, 249);
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/icons/images/minimize.svg</normaloff>:/icons/images/minimize.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>10</width>
+              <height>10</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item alignment="Qt::AlignRight">
+           <widget class="QPushButton" name="restore_window_button">
+            <property name="styleSheet">
+             <string notr="true">QPushButton#restore_window_button {
+	width: 50px;
+	height: 30px;
+}
+
+QPushButton#restore_window_button::hover {	
+	background-color: rgb(144, 202, 249);
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/icons/images/restore_maximize_1.svg</normaloff>:/icons/images/restore_maximize_1.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>10</width>
+              <height>10</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item alignment="Qt::AlignRight">
+           <widget class="QPushButton" name="close_window_button">
+            <property name="styleSheet">
+             <string notr="true">QPushButton#close_window_button {
+	width: 50px;
+	height: 30px;
+}
+
+QPushButton#close_window_button::hover {
+	background-color: rgb(255, 0, 0);
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/icons/images/close.svg</normaloff>:/icons/images/close.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>10</width>
+              <height>10</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+	background-color: rgba(0, 0, 0, 0);
+</string>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="exel_page">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QPushButton" name="exel_button">
+          <property name="font">
+           <font>
+            <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>ArrowCursor</cursorShape>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::StrongFocus</enum>
+          </property>
+          <property name="contextMenuPolicy">
+           <enum>Qt::ActionsContextMenu</enum>
+          </property>
+          <property name="acceptDrops">
+           <bool>false</bool>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#exel_button {
+	width: 300px;
+	height: 300px;
+	
+	
+	border-image: url(:/icons/images/exel_button.svg);
+}
+
+QPushButton#exel_button::hover {
+	width: 320px;
+	height: 320px;
+	
+	border-image: url(:/icons/images/exel_button_hover.svg);
+}
+</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>300</width>
+            <height>300</height>
+           </size>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+          <property name="autoDefault">
+           <bool>false</bool>
+          </property>
+          <property name="default">
+           <bool>false</bool>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="main_page">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <property name="spacing">
+         <number>10</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item alignment="Qt::AlignLeft">
+         <widget class="QFrame" name="left_arrow_frame">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QPushButton" name="left_arrow_button">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton#left_arrow_button {
+	
+	background-image: url(:/icons/images/left_arrow_button.svg);
+	background-repeat: norepeat;
+	background-position: center;
+	padding: 20px;
+}
+
+QPushButton#left_arrow_button::hover {
+	
+	background-image: url(:/icons/images/left_arrow_button_hover.svg);
+	background-color: rgb(201, 178, 208);
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QScrollArea" name="scrollArea">
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_3">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>890</width>
+             <height>767</height>
+            </rect>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <item>
+             <widget class="QFrame" name="main_info_frame">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>1200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_5">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <item alignment="Qt::AlignTop">
+                <widget class="QFrame" name="first_line">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_4">
+                  <property name="spacing">
+                   <number>0</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item alignment="Qt::AlignLeft">
+                   <widget class="QFrame" name="left_coloumn">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_6">
+                     <property name="spacing">
+                      <number>10</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QFrame" name="title_frame">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>320</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>320</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 10px;</string>
+                       </property>
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QVBoxLayout" name="verticalLayout_8">
+                        <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+                         <widget class="QLabel" name="title_label">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                            <pointsize>15</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>fdgdfg</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QFrame" name="image_frame">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>320</width>
+                         <height>320</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>320</width>
+                         <height>320</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 10px;</string>
+                       </property>
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QVBoxLayout" name="verticalLayout_7">
+                        <item>
+                         <widget class="QLabel" name="image_label">
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="pixmap">
+                           <pixmap resource="resources.qrc">:/icons/images/settings_hover.svg</pixmap>
+                          </property>
+                          <property name="scaledContents">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QFrame" name="right_coloumn">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>100</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_9">
+                     <property name="leftMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QFrame" name="characteristics_frame">
+                       <property name="styleSheet">
+                        <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 10px;</string>
+                       </property>
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QVBoxLayout" name="verticalLayout_10">
+                        <property name="spacing">
+                         <number>15</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>15</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>15</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>15</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>15</number>
+                        </property>
+                        <item>
+                         <widget class="QLabel" name="label_2">
+                          <property name="font">
+                           <font>
+                            <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                            <pointsize>12</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Характеристики</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QFrame" name="buttons_frame">
+                          <property name="font">
+                           <font>
+                            <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                            <pointsize>4</pointsize>
+                           </font>
+                          </property>
+                          <property name="frameShape">
+                           <enum>QFrame::StyledPanel</enum>
+                          </property>
+                          <property name="frameShadow">
+                           <enum>QFrame::Raised</enum>
+                          </property>
+                          <layout class="QHBoxLayout" name="horizontalLayout_5">
+                           <property name="spacing">
+                            <number>0</number>
+                           </property>
+                           <property name="leftMargin">
+                            <number>0</number>
+                           </property>
+                           <property name="topMargin">
+                            <number>0</number>
+                           </property>
+                           <property name="rightMargin">
+                            <number>0</number>
+                           </property>
+                           <property name="bottomMargin">
+                            <number>0</number>
+                           </property>
+                           <item>
+                            <widget class="QPushButton" name="characteristic_button_1">
+                             <property name="font">
+                              <font>
+                               <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                               <pointsize>11</pointsize>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">QPushButton {
+	border: solid;
+	border-radius: 0;
+	border-bottom-width: 5px;
+	color: rgb(99, 54, 109);
+	border-color:rgb(99, 54, 109);
+	padding-top:5px;
+}
+
+QPushButton::hover {
+	color: rgb(146, 92, 154);
+	border-color: rgb(146, 92, 154);
+	
+	background-color: rgba(146, 92, 154, 50);
+}</string>
+                             </property>
+                             <property name="text">
+                              <string>1</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="characteristic_button_2">
+                             <property name="font">
+                              <font>
+                               <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                               <pointsize>11</pointsize>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">QPushButton {
+	border: solid;
+	border-radius: 0;
+	border-bottom-width: 5px;
+	color: rgb(190, 153, 196);
+	border-color: rgb(190, 153, 196);
+	padding-top:5px;
+}
+
+QPushButton::hover {
+	color: rgb(146, 92, 154);
+	border-color: rgb(146, 92, 154);
+	
+	background-color: rgba(146, 92, 154, 50);
+}</string>
+                             </property>
+                             <property name="text">
+                              <string>2</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="characteristic_button_3">
+                             <property name="font">
+                              <font>
+                               <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                               <pointsize>11</pointsize>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">QPushButton {
+	border: solid;
+	border-radius: 0;
+	border-bottom-width: 5px;
+	color: rgb(190, 153, 196);
+	border-color: rgb(190, 153, 196);
+	padding-top:5px;
+}
+
+QPushButton::hover {
+	color: rgb(146, 92, 154);
+	border-color: rgb(146, 92, 154);
+	
+	background-color: rgba(146, 92, 154, 50);
+}</string>
+                             </property>
+                             <property name="text">
+                              <string>3</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QStackedWidget" name="characteristic_stacked_widget">
+                          <property name="currentIndex">
+                           <number>1</number>
+                          </property>
+                          <widget class="QWidget" name="characteristic_page_1">
+                           <layout class="QGridLayout" name="gridLayout">
+                            <property name="topMargin">
+                             <number>0</number>
+                            </property>
+                            <item row="1" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_4">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Тип изделия</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="0" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_3">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Артикул</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="2" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_5">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Средний вес</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="3" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_6">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Ценовой сегмент</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="4" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_7">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Тип металла</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="5" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_8">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Цвет металла/покрытие</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="6" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_9">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Проба</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="0" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_1">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="1" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_2">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="2" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_3">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="3" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_4">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="4" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_5">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="5" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_6">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="6" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_7">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </widget>
+                          <widget class="QWidget" name="characteristic_page_2">
+                           <layout class="QGridLayout" name="gridLayout_2">
+                            <property name="topMargin">
+                             <number>0</number>
+                            </property>
+                            <item row="1" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_20">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Бренд</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="3" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_22">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Общее количество вставок</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="4" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_23">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Камень основной вставки</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="0" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_19">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Цвет изделия</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="2" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_21">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Основная категория</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="5" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_24">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Каратный вес основного бриллианта</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="6" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_25">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Плетение цепи</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="0" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_8">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="1" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_9">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="2" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_10">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="3" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_11">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="4" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_12">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="5" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_13">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="6" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_14">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </widget>
+                          <widget class="QWidget" name="characteristic_page_3">
+                           <layout class="QGridLayout" name="gridLayout_3">
+                            <property name="topMargin">
+                             <number>0</number>
+                            </property>
+                            <item row="0" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_33">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Вид замка</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="1" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_34">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Символы и надписи</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="2" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_35">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Знак зодиака</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="3" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_36">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Религия</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="5" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_38">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Для кого</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="4" column="0" alignment="Qt::AlignLeft">
+                             <widget class="QLabel" name="label_37">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Лик святого</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="0" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_15">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="1" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_16">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="4" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_19">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="2" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_17">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="3" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_18">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="5" column="1" alignment="Qt::AlignRight">
+                             <widget class="QLabel" name="characteristic_20">
+                              <property name="font">
+                               <font>
+                                <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                                <pointsize>10</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>TextLabel</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </widget>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item alignment="Qt::AlignTop">
+                <widget class="QFrame" name="secon_line">
+                 <property name="font">
+                  <font>
+                   <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                  </font>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_11">
+                  <property name="topMargin">
+                   <number>10</number>
+                  </property>
+                  <item alignment="Qt::AlignTop">
+                   <widget class="QFrame" name="frame">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="sizeIncrement">
+                     <size>
+                      <width>0</width>
+                      <height>-31072</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 10px;
+</string>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_12">
+                     <property name="spacing">
+                      <number>15</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>15</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>15</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>15</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>15</number>
+                     </property>
+                     <item>
+                      <widget class="QFrame" name="frame_4">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QVBoxLayout" name="verticalLayout_13">
+                        <property name="spacing">
+                         <number>0</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QLabel" name="label_17">
+                          <property name="font">
+                           <font>
+                            <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                            <pointsize>12</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Сгенерированные описания</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item alignment="Qt::AlignTop">
+                      <widget class="QFrame" name="frame_3">
+                       <property name="styleSheet">
+                        <string notr="true"/>
+                       </property>
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_6">
+                        <property name="spacing">
+                         <number>0</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QPushButton" name="description_button_1">
+                          <property name="font">
+                           <font>
+                            <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                            <pointsize>11</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QPushButton {
+	border: solid;
+	border-radius: 0;
+	border-bottom-width: 5px;
+	color: rgb(99, 54, 109);
+	border-color:rgb(99, 54, 109);
+	padding-top:5px;
+}
+
+QPushButton::hover {
+	color: rgb(146, 92, 154);
+	border-color: rgb(146, 92, 154);
+	
+	background-color: rgba(146, 92, 154, 50);
+}</string>
+                          </property>
+                          <property name="text">
+                           <string>SEO</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="description_button_2">
+                          <property name="font">
+                           <font>
+                            <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                            <pointsize>11</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QPushButton {
+	border: solid;
+	border-radius: 0;
+	border-bottom-width: 5px;
+	color: rgb(190, 153, 196);
+	border-color: rgb(190, 153, 196);
+	padding-top:5px;
+}
+
+QPushButton::hover {
+	color: rgb(146, 92, 154);
+	border-color: rgb(146, 92, 154);
+	
+	background-color: rgba(146, 92, 154, 50);
+}</string>
+                          </property>
+                          <property name="text">
+                           <string>1</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="description_button_3">
+                          <property name="font">
+                           <font>
+                            <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                            <pointsize>11</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QPushButton {
+	border: solid;
+	border-radius: 0;
+	border-bottom-width: 5px;
+	color: rgb(190, 153, 196);
+	border-color: rgb(190, 153, 196);
+	padding-top:5px;
+}
+
+QPushButton::hover {
+	color: rgb(146, 92, 154);
+	border-color: rgb(146, 92, 154);
+	
+	background-color: rgba(146, 92, 154, 50);
+}</string>
+                          </property>
+                          <property name="text">
+                           <string>2</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="description_button_4">
+                          <property name="font">
+                           <font>
+                            <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                            <pointsize>11</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QPushButton {
+	border: solid;
+	border-radius: 0;
+	border-bottom-width: 5px;
+	color: rgb(190, 153, 196);
+	border-color: rgb(190, 153, 196);
+	padding-top:5px;
+}
+
+QPushButton::hover {
+	color: rgb(146, 92, 154);
+	border-color: rgb(146, 92, 154);
+	
+	background-color: rgba(146, 92, 154, 50);
+}</string>
+                          </property>
+                          <property name="text">
+                           <string>3</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QFrame" name="frame_2">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QVBoxLayout" name="verticalLayout_14">
+                        <property name="spacing">
+                         <number>0</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QLabel" name="descreption_label">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <family>-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen- Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif</family>
+                            <pointsize>10</pointsize>
+                           </font>
+                          </property>
+                          <property name="autoFillBackground">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string>juytuftuytufty</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frame_5">
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignRight">
+         <widget class="QFrame" name="right_arrow_frame">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QPushButton" name="right_arrow_button">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton#right_arrow_button {
+	background-image: url(:/icons/images/right_arrow_button.svg);
+	background-repeat: norepeat;
+	background-position: center;
+	padding: 20px;
+}
+
+QPushButton#right_arrow_button::hover {
+	background-image: url(:/icons/images/right_arrow_button_hover.svg);
+	background-color: rgb(201, 178, 208);
+	
+	
+}
+</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="loading_page">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_10">
+        <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+         <widget class="QLabel" name="loading_label">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="footer">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_8">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Copyright© 2022 Scenery Vision. All rights reserved</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="size_grip">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
