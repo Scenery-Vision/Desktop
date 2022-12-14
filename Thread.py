@@ -93,7 +93,7 @@ class APIThread(QThread):
                     # p2 = Process(target=menu)
                     p.start()
                     # p2.start()
-  self.size = parent_conn_s.recv()
+                self.size = parent_conn_s.recv()
                     # self.table = load_and_processing_excel_csv(self.path_to_table)  # type: pd.DataFrame
                 if self.count >= self.size:
                     return
